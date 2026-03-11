@@ -6,15 +6,14 @@ export function serveStatic(app: Express) {
   const distPath = path.resolve(process.cwd(), "client/dist");
 
   if (!fs.existsSync(distPath)) {
-    throw new Error(
-      `Could not find the build directory: ${distPath}, make sure to build the client first`,
-    );
+    console.warn("dist folder not found, serving client folder instead");
+    app.use(express.static(path.resolve(process.cwd(), "client")));
+    return;
   }
 
   app.use(express.static(distPath));
 
-  // fallback to index.html
-  app.use("*", (_req, res) => {
-    res.sendFile(path.resolve(distPath, "index.html"));
+  app.get("*", (_req, res) => {
+    res.sendFile(path.join(distPath, "index.html"));
   });
 }
