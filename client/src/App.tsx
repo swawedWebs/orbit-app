@@ -1,7 +1,6 @@
 import { Switch, Route } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
@@ -13,7 +12,10 @@ function Router() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "#0b0f1a" }}>
+      <div
+        className="min-h-screen flex items-center justify-center"
+        style={{ background: "#0b0f1a" }}
+      >
         <div className="text-white/40 text-lg">Loading...</div>
       </div>
     );
@@ -35,7 +37,6 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
-        <Toaster />
         <Router />
       </TooltipProvider>
     </QueryClientProvider>
