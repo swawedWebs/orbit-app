@@ -10,12 +10,10 @@ export function serveStatic(app: Express) {
     return;
   }
 
-  console.log("Serving static files from:", distPath);
+  console.log("Serving frontend from:", distPath);
 
-  // Serve built assets
   app.use(express.static(distPath));
 
-  // Serve React app
   app.get("/", (_req, res) => {
     res.sendFile(path.join(distPath, "index.html"));
   });
