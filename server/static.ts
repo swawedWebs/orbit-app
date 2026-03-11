@@ -12,8 +12,8 @@ export function serveStatic(app: Express) {
   // Serve static files
   app.use(express.static(distPath));
 
-  // Catch-all route for React / SPA routing
-  app.get("*", (_req, res) => {
+  // Catch-all route for SPA routing
+  app.get("/*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }
