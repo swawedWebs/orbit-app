@@ -3,7 +3,7 @@ import fs from "fs";
 import path from "path";
 
 export function serveStatic(app: Express) {
-  const distPath = path.resolve(process.cwd(), "public"); // FIXED
+  const distPath = path.resolve(process.cwd(), "client");
 
   if (!fs.existsSync(distPath)) {
     throw new Error(
